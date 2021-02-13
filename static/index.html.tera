@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Rocket Usermanager</title>
+    <meta name="description" content="A Usermanager written in Rocket.">
+    <meta name="author" content="Alex Ruhl">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="/css/normalize.css">
+    <link rel="stylesheet" href="/css/skeleton.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="icon" type="image/png" href="/images/favicon.png">
+</head>
+<body>
+
+<div class="container">
+
+    <div class="row">
+        <h1>Usermanager</h1>
+        <form action="/user" method="post">
+            <div class="twelve columns">
+                <input type="text" name="name" id="name" placeholder="Name">
+                <input type="text" name="surname" id="surname" placeholder="Vorname">
+                <input type="email" name="email" id="email" placeholder="E-Mail">
+                <input type="password" name="pw" id="pw" placeholder="Passwort">
+                <input type="text" name="role" id="role" placeholder="Rolle">
+                <input type="submit" value="Benutzer erstellen">
+            </div>
+        </form>
+    </div>
+
+    <div class="row">
+        <div class="twelve columns">
+            <br>
+            <h4>Nutzerübersicht</h4>
+            <table>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Vorname</th>
+                    <th>E-Mail</th>
+                    <th>Passwort</th>
+                    <th>Rolle</th>
+                    <th></th>
+                </tr>
+                {% for user in users %}
+                <tr>
+                    <td>
+                        <div contenteditable id="idEdit">{{user.id}}</div>
+                    </td>
+                    <td>
+                        <div contenteditable id="nameEdit">{{user.name}}</div>
+                    </td>
+                    <td>
+                        <div contenteditable id="surnameEdit">{{user.surname}}</div>
+                    </td>
+                    <td>
+                        <div contenteditable id="emailEdit">{{user.email}}</div>
+                    </td>
+                    <td>
+                        <div contenteditable id="pwEdit">{{user.pw}}</div>
+                    </td>
+                    <td>
+                        <div contenteditable id="roleEdit">{{user.role}}</div>
+                    </td>
+                    <td>
+                        <button id="edit" class="primary small" type="submit">edit</button>
+                        <form class="inline" action="/user/{{user.id}}" method="post">
+                            <button class="primary small" type="submit">delete</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"
+        crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/d3js/5.14.2/d3.min.js"
+        crossorigin="anonymous"></script>
+<script type="module" src="script.js"></script>
+</body>
+</html>
