@@ -1,5 +1,5 @@
 [package]
-name = "webservice"
+name = "usermanager"
 version = "0.0.0"
 edition = "2018"
 publish = false
